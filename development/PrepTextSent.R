@@ -37,7 +37,7 @@ PrepTextSent <- function(textdata, groupvar, textvar, node_type=c("groups", "wor
     
     # split up text data into sentences
     textdata <- as_tibble(textdata) %>%
-      unnest_tokens_(output = "sentences", input = textvar, token = "sentences")
+      unnest_tokens(output = "sentences", input = textvar, token = "sentences")
     
     # create sentence id
     textdata <- textdata %>%
@@ -81,7 +81,7 @@ PrepTextSent <- function(textdata, groupvar, textvar, node_type=c("groups", "wor
   ## IF SPECIFIED: ANNOTATE WORDS AND COMPOUND NOUNS
   if (isTRUE(compound_nouns)){
     # split up documents into words
-    textdata_tokens <- unnest_tokens_(textdata,
+    textdata_tokens <- unnest_tokens(textdata,
                                       output = "word", input = textvar,
                                       token = tokenizer, drop = FALSE, 
                                       strip_punct = FALSE, ...)
